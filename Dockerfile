@@ -18,5 +18,5 @@ ENTRYPOINT exec java -XshowSettings:vm $JAVA_OPTS -jar /my-app.jar
 # $ docker build -t my-app .
 # then
 # $ docker run -P my-app
-# or
-# $ docker run -p 8080:8080 my-app
+# or bind specific port (-p real-host-port:image-exposed-port)
+# $ docker run -p 80:8080 my-app
