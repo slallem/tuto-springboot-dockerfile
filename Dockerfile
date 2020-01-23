@@ -4,7 +4,7 @@ WORKDIR /build
 #ADD http://somewhere.at.mycompany.com/mycompany-env/.m2/settings.xml settings.xml
 COPY pom.xml pom.xml
 #RUN mvn -s settings.xml -q dependency:go-offline
-RUN mvn -q dependency:go-offline
+RUN mvn dependency:go-offline
 
 COPY src src
 #RUN mvn -s settings.xml install
