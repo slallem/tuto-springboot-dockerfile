@@ -12,7 +12,7 @@ RUN mvn -s settings.xml install
 FROM openjdk:11.0.5-slim
 COPY --from=build /build/target/*.jar my-app.jar
 
-RUN groupadd -r portal-notifications-gen && useradd -r -g portal-notifications-gen portal-notifications-gen
-USER portal-notifications-gen
+RUN groupadd -r my-app-group && useradd -r -g my-app-group my-app-user
+USER my-app-user
 
 ENTRYPOINT exec java -XshowSettings:vm $JAVA_OPTS -jar /my-app.jar
