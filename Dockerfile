@@ -9,9 +9,9 @@ RUN wget https://github.com/slallem/tuto-springboot-dockerfile/raw/master/exampl
 RUN groupadd -r my-app-group && useradd -r -g my-app-group my-app-user
 USER my-app-user
 
-EXPOSE 80
+EXPOSE 8080
 
-ENTRYPOINT exec java -XshowSettings:vm $JAVA_OPTS -Dserver.port=80 -jar /my-app.jar
+ENTRYPOINT exec java -XshowSettings:vm $JAVA_OPTS -jar /my-app.jar
 
 # To build and run this example:
 
@@ -19,4 +19,4 @@ ENTRYPOINT exec java -XshowSettings:vm $JAVA_OPTS -Dserver.port=80 -jar /my-app.
 # then
 # $ docker run -P my-app
 # or
-# $ docker run -p 80:80 my-app
+# $ docker run -p 8080:8080 my-app
