@@ -7,7 +7,7 @@ COPY pom.xml pom.xml
 #COPY src src
 #RUN mvn -s settings.xml install
 
-RUN mvn dependency:go-offline
+#RUN mvn dependency:go-offline
 COPY src src
 RUN mvn package
 
