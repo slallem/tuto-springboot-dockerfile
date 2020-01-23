@@ -2,6 +2,7 @@
 FROM maven:3.6.0-jdk-11-slim as build
 WORKDIR /build
 #ADD http://somewhere.at.mycompany.com/mycompany-env/.m2/settings.xml settings.xml
+COPY settings.xml settings.xml
 COPY pom.xml pom.xml
 RUN mvn -s settings.xml -q dependency:go-offline
 
