@@ -4,11 +4,12 @@ WORKDIR /build
 #ADD http://somewhere.at.mycompany.com/mycompany-env/.m2/settings.xml settings.xml
 COPY pom.xml pom.xml
 #RUN mvn -s settings.xml -q dependency:go-offline
-RUN mvn dependency:go-offline
-
-COPY src src
+#COPY src src
 #RUN mvn -s settings.xml install
-RUN mvn install
+
+RUN mvn dependency:go-offline
+COPY src src
+RUN mvn package
 
 #release
 FROM openjdk:11.0.5-slim
