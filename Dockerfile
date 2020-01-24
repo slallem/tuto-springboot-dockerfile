@@ -7,8 +7,9 @@ COPY pom.xml pom.xml
 #COPY src src
 #RUN mvn -s settings.xml install
 
-RUN /usr/local/bin/mvn-entrypoint.sh mvn verify clean --fail-never
+#RUN /usr/local/bin/mvn-entrypoint.sh mvn verify clean --fail-never
 #RUN mvn dependency:go-offline
+RUN mvn dependency:resolve
 
 COPY src src
 RUN mvn package
