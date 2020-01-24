@@ -1,6 +1,10 @@
 #build
 FROM maven:3.6.0-jdk-11-slim as build
 WORKDIR /build
+
+#Need mkdir /opt/myvolumes/m2 on host
+VOLUME /opt/myvolumes/m2:/root/.m2
+
 #ADD http://somewhere.at.mycompany.com/mycompany-env/.m2/settings.xml settings.xml
 COPY pom.xml pom.xml
 #RUN mvn -s settings.xml -q dependency:go-offline
@@ -8,8 +12,8 @@ COPY pom.xml pom.xml
 #RUN mvn -s settings.xml install
 
 #RUN /usr/local/bin/mvn-entrypoint.sh mvn verify clean --fail-never
-#RUN mvn dependency:go-offline
-RUN mvn dependency:resolve
+RUN mvn dependency:go-offline
+#RUN mvn dependency:resolve
 
 COPY src src
 RUN mvn package
